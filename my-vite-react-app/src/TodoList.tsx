@@ -1,4 +1,11 @@
-const ToDoList = ({ toDoList }) => {
+type Props = {
+  /**
+   * La liste des todos
+   */
+  toDoList: string[];
+};
+
+const ToDoList = ({ toDoList }: Props) => {
   return (
     <>
       <h1>Ma todoList</h1>

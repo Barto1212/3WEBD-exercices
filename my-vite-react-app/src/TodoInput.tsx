@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-const TodoInput = ({ setTodoList }) => {
+type Props = {
+  /**
+   * Mon setter des todos
+   */
+  setTodoList: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const TodoInput = ({ setTodoList }: Props) => {
   const [input, setInput] = useState("");
 
   function handleClick() {
