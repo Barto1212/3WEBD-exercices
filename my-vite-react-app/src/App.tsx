@@ -3,7 +3,7 @@ import ToDoList from "./TodoList";
 import TodoInput from "./TodoInput";
 
 function App() {
-  const [toDoList, setTodoList] = useState(["Todo 1", "Todo 2", "Todo 3"]);
+  const [toDoList, setTodoList] = useState<string[]>(["Todo 1", "Todo 2", "Todo 3"]);
 
   return (
     <>
