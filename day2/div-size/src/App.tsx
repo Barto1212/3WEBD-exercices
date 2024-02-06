@@ -1,12 +1,10 @@
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { Modal } from "./Modal";
-import { useEffect, useState } from "react";
+import { useWindowSize } from "./useWindowSize";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
-
+  const size = useWindowSize();
   return (
     <>
       <div>
@@ -17,17 +15,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Modal</h1>
-      <div className="card">
-        <button
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        >
-          Open modal
-        </button>
-      </div>
-      <Modal onClose={() => setIsOpen(false)} isOpen={isOpen} />
+      <h1>Window size: {size}px</h1>
     </>
   );
 }

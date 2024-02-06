@@ -13,7 +13,19 @@ export function Modal({
 
   if (!injectHere) return null;
   if (!isOpen) return null;
-  return createPortal(
+  return createPortal(<ModalComponent onClose={onClose} />, injectHere);
+}
+
+const ModalComponent = ({ onClose }: { onClose: () => void }) => {
+  useEffect(() => {
+    const closingCallback = (e: MouseEvent) => {
+      console.log(e.target);
+      onClose();
+    };
+    document.addEventListener("click", closingCallback);
+    return document.removeEventListener("click", closingCallback);
+  }, []);
+  return (
     <div className="modal">
       <div className="container">
         <h2>Ceci est un modal</h2>
@@ -25,7 +37,6 @@ export function Modal({
         </p>
       </div>
       <button onClick={onClose}>Close modal</button>
-    </div>,
-    injectHere
+    </div>
   );
-}
+};
