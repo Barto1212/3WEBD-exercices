@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { fibonacci } from "./fibo";
 
 function App() {
   const [count, setCount] = useState(0);
+  const memoizedResult = useMemo(() => fibonacci(37), []);
+  useEffect(() => {
+    console.log("calculs");
+    console.log(memoizedResult);
+
+    console.log("fin calculs");
+  }, [count]);
 
   return (
     <>
