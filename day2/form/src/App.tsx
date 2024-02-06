@@ -1,4 +1,10 @@
-import { FormEvent, FormEventHandler, useRef, useState } from "react";
+import {
+  FormEvent,
+  FormEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -6,6 +12,10 @@ import "./App.css";
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [name, setName] = useState("inconnu");
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+  
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputRef?.current) {
@@ -13,6 +23,7 @@ function App() {
       inputRef.current.value = "";
     }
   };
+  
   return (
     <>
       <Header />
