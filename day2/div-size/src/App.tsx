@@ -2,9 +2,13 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { useWindowSize } from "./useWindowSize";
+import { useRef } from "react";
 
 function App() {
-  const size = useWindowSize();
+  useWindowSize();
+  const sizedBoxRef = useRef<HTMLDivElement>(null);
+  console.log(sizedBoxRef);
+
   return (
     <>
       <div>
@@ -15,7 +19,11 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Window size: {size}px</h1>
+      {/* <h1>Window size: {size}px</h1> */}
+      <div ref={sizedBoxRef} className="sized">
+        <p>Hauteur :{sizedBoxRef.current?.clientHeight}</p>
+        <p>Largeur :{sizedBoxRef.current?.clientWidth}</p>
+      </div>
     </>
   );
 }
