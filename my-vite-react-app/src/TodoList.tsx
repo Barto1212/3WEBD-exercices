@@ -10,8 +10,8 @@ const ToDoList = ({ toDoList }: Props) => {
     <>
       <h1>Ma todoList</h1>
       <ul>
-        {toDoList.map((todo, index) => (
-          <li key={index}>{todo}</li>
+        {toDoList.map((todo) => (
+          <li key={todo}>{todo}</li>
         ))}
       </ul>
     </>

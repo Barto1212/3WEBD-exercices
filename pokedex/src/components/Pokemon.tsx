@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Pokemon } from "../services/getPokemonList";
 
 type Props = {
@@ -8,11 +9,13 @@ export const PokemonCard = ({ pokemon }: Props) => {
   return (
     <li className="pokemon-card">
       <h3>{pokemon.name}</h3>
-      <img
-        className="pokemon-card--img"
-        src={pokemon.image}
-        alt={pokemon.name}
-      />
+      <Link to={`pokemon/${pokemon.id}`}>
+        <img
+          className="pokemon-card--img"
+          src={pokemon.image}
+          alt={pokemon.name}
+        />
+      </Link>
     </li>
   );
 };
