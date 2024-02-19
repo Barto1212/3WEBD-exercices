@@ -1,7 +1,7 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
+import { getUserLs, setUserLs } from "../lsAccess";
 
-type User = string | null;
-const defaultUser: User = null;
+export type User = string | null;
 export type AuthContextType = {
   user: User;
   login: (userName: string) => void;
@@ -11,7 +11,10 @@ export type AuthContextType = {
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User>(defaultUser);
+  const [user, setUser] = useState<User>(getUserLs());
+  useEffect(() => {
+    setUserLs(user);
+  }, [user]);
   const login = (userName: string) => {
     setUser(userName);
   };

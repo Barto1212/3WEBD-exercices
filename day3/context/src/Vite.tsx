@@ -8,7 +8,7 @@ import Login from "./Login";
 const Vite = () => {
   const { theme } = useContext(ThemeContext) as ThemeContextType;
   return (
-    <>
+    <div>
       <div style={{ backgroundColor: theme === "light" ? "white" : "black" }}>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -25,7 +25,7 @@ const Vite = () => {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-    </>
+    </div>
   );
 };
 
