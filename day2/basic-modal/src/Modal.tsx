@@ -27,6 +27,7 @@ const ModalComponent = ({ onClose }: { onClose: () => void }) => {
   }, []);
   return (
     <div className="modal">
+      {/* Add an overlay div with onClick = handleClose */}
       <div className="container">
         <h2>Ceci est un modal</h2>
         <p>

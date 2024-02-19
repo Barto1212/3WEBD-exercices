@@ -1,11 +1,18 @@
-import { ChangeEvent, FormEvent, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { useForm } from "./useForm";
+import { FormEvent } from "react";
 
 function App() {
-  const { input, handleChange, handleSubmit } = useForm("");
+  const { input, handleChange } = useForm("");
+
+  
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("POST : ", input);
+  };
+  useForm(["Loic", "", ""]);
 
   return (
     <>

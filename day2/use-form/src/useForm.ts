@@ -1,4 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
+
+
 
 export function useForm(initialValue: string) {
   const [input, setInput] = useState(initialValue);
@@ -7,9 +9,20 @@ export function useForm(initialValue: string) {
     setInput(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("POST : ", input);
+ 
+  return { input, handleChange };
+}
+
+
+export function useForm2(initialValues: string[]) {
+
+  
+  const [input, setInput] = useState(initialValue);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
   };
-  return { input, handleChange, handleSubmit };
+
+ 
+  return { input, handleChange };
 }
