@@ -1,11 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { useFetch } from "./useFetch";
+import ListItem from "./ListItem";
+import { cities } from "./cities";
+
+export type City = {
+  nom: string;
+  code: string;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const sumCP = (comm: City[]): number => {
+    const initialValue = 0;
+    const sumWithInitial = comm.reduce(
+      (accumulator, currentValue) => accumulator + parseInt(currentValue.code),
+      initialValue
+    );
 
+    return sumWithInitial;
+  };
   return (
     <>
       <div>
@@ -16,20 +31,19 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>La somme de tous les CP = {sumCP(cities)}</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <ul>
+          {cities.map((city) => (
+            <ListItem key={city.code} city={city} />
+          ))}
+        </ul>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
