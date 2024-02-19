@@ -1,13 +1,14 @@
 import Vite from "./Vite";
 import ChangeThemeButton from "./ChangeThemeButton";
-import ThemeProvider from "./context/ThemeProvider";
+import NavBar from "./NavBar";
 
 function App() {
   return (
-    <ThemeProvider>
+    <>
+      <NavBar />
       <ChangeThemeButton />
       <Vite />
-    </ThemeProvider>
+    </>
   );
 }
 
