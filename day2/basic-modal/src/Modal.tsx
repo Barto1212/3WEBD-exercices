@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import "./modal.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+
 
 export function Modal({
   isOpen,
@@ -17,27 +18,33 @@ export function Modal({
 }
 
 const ModalComponent = ({ onClose }: { onClose: () => void }) => {
+  const stopClickPropagation = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+  const inputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
-    const closingCallback = (e: MouseEvent) => {
-      console.log(e.target);
-      onClose();
-    };
-    document.addEventListener("click", closingCallback);
-    return document.removeEventListener("click", closingCallback);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
+
   return (
-    <div className="modal">
-      {/* Add an overlay div with onClick = handleClose */}
-      <div className="container">
-        <h2>Ceci est un modal</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-          eligendi perspiciatis natus consectetur dignissimos voluptatum esse
-          neque, laborum fugit, nam tenetur cum itaque sequi explicabo veritatis
-          quam soluta distinctio recusandae?
-        </p>
+    <div className="overlay" onClick={onClose}>
+      <div className="modal" onClick={stopClickPropagation}>
+        {/* Add an overlay div with onClick = handleClose */}
+        <div className="container">
+          <h2>Ceci est un modal</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
+            eligendi perspiciatis natus consectetur dignissimos voluptatum esse
+            neque, laborum fugit, nam tenetur cum itaque sequi explicabo
+            veritatis quam soluta distinctio recusandae?
+          </p>
+        </div>
+        <input ref={inputRef} type="text" />
+        <button onClick={onClose}>Close modal</button>
       </div>
-      <button onClick={onClose}>Close modal</button>
     </div>
   );
 };

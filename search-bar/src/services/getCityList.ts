@@ -1,7 +1,7 @@
 export type FetchCity = {
-  code: string;
+  // code: string;
   nom: string;
-  //   codeDepartement: string;
+  // codeDepartement: string;
   //   codeEpci: string;
   //   codeRegion: string;
   //   codesPostaux: string[];
@@ -11,8 +11,8 @@ export type FetchCity = {
 
 export async function getCityList(name: string) {
   const datas = await fetch(
-    `https://geo.api.gouv.fr/communes?nom=${name}&fields=code,nom&limit=10`
+    `https://geo.api.gouv.fr/communes?nom=${name}&fields=nom,codeDepartement&limit=10`
   );
   const response = (await datas.json()) as FetchCity[];
-  return response;
+  return response.map(city => city.nom)
 }

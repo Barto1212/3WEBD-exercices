@@ -26,8 +26,8 @@ function App() {
         >
           Open modal
         </button>
+        <Modal onClose={() => setIsOpen(false)} isOpen={isOpen} />
       </div>
-      <Modal onClose={() => setIsOpen(false)} isOpen={isOpen} />
     </>
   );
 }
