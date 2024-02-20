@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import "./App.css";
 import { FetchCity, getCityList } from "./services/getCityList";
-import { useDebounce } from "./services/useDebounce";
+import { useDebounce } from "./component/hooks/useDebounce";
+import CityItem from "./component/CityItem";
 // import getCityList from "./services/getCityList";
 function App() {
   const [userInput, setUserInput] = useState("");
@@ -25,8 +26,8 @@ function App() {
           type="text"
         />
         <ul className="city-list">
-          {suggestions.map((city) => (
-            <li key={city.code}>{city.nom}</li>
+          {suggestions.length !== 1 && suggestions.map((city) => (
+            <CityItem key={city.code} city={city} setUserInput={setUserInput} />
           ))}
         </ul>
       </form>
